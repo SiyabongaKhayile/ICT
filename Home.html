@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Contacts - Department of ICT</title>
+    <link rel="stylesheet" href="Home.css">
+    <script src="Home.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Department of Information & Communication Technology</h1>
+        
+        <div class="navbar">
+            <a href="#" data-section="home">Home</a>
+            <a href="#" data-section="handbook">Handbook</a>
+            <a href="#" data-section="postgraduate">Postgraduate Studies</a>
+            <a href="#" data-section="information">Information Sheet</a>
+            <a href="#" data-section="timetables">IT Timetables</a>
+            <a href="#" data-section="programs" class="active">Programs</a>
+            <div class="dropdown">
+                <button class="dropdown-btn"></button>
+                <div class="dropdown-content">
+                    <a href="#" data-program="diploma">Diploma in Information Technology</a>
+                    <a href="#" data-program="extended">Diploma in Information Technology: Extended Curriculum Programme</a>
+                    <a href="#" data-program="advanced">Advanced Diploma in Information and Communication Technology in Applications Development</a>
+                </div>
+            </div>
+            <a href="#" data-section="staff">Staff</a>
+        </div>
+
+        <div class="content-section" id="information-section">
+            <h1>Why Study ICT?</h1>
+            <div class="diamonds">
+                <div class="diamond blue"></div>
+                <div class="diamond gold"></div>
+                <div class="diamond red"></div>
+            </div>
+            
+            <p>
+                Every company needs an ICT specialist, who not only understands the technology behind computers and mobile devices but also understands the needs of the company and the workforce. So an ICT professional is in charge of the physical hardware like computers, printers, and copiers, as well as software, communication and connection systems, and online platforms. They also know how to use these technologies to streamline business processes. An ICT specialist designs, maintains, and services the systems used to generate, store, send and retrieve data. The ICT qualification from MUT has been specifically designed to prepare students directly for the workplace.
+            </p>
+            
+            <h2>Career Opportunities</h2>
+            <p>
+                There are a wide range of careers in this field, ranging from librarians to the military. You can become a computer service technician, a programmer, data technician, web developer, systems analyst or IT engineer. Most companies of any size will also employ an ICT specialist to maintain their hardware and software and offer technological support to staff, while there are jobs within companies that specialise in offering ICT services.
+            </p>
+        </div>
+
+        <!-- Programs content sections (initially hidden) -->
+        <div class="content-section" id="programs-section">
+            <h1>Our Programmes</h1>
+            
+            <div id="all-programs">
+                <div class="programme-card">
+                    <h2>Diploma in Information Technology</h2>
+                    <div class="programme-info">
+                        <img src="images/Jugoo.jpg" alt="IT Diploma Programme" class="programme-image">
+                        <div class="qualification-details">
+                            <p><strong>NQF Level:</strong> 6</p>
+                            <p><strong>HEQSF Qualification Type:</strong> 63</p>
+                            <p><strong>SAQA Credits:</strong> 360</p>
+                            <p><strong>SAQA Qualification ID:</strong> 96862</p>
+                            <p><strong>CESM Code:</strong> 06</p>
+                        </div>
+                    </div>
+                    <div class="programme-description">
+                        <h3>Rationale for Qualification</h3>
+                        <p>
+                            This qualification has been re-aligned to the new HEQSF and takes into account the latest ICT industry requirements. The qualification has also been formulated to reflect the latest workplace-based trends within the ICT industry, to ensure that qualifying learners will have accessibility to employment within the industry. The inclusion of a work-integrated learning component as part of a credit-bearing module at NQF-6 is a unique concept within the University of Technology ICT sector in SA. This, together with the project-based and problem-solving approach embedded in the qualification, will have the defined purpose of capacitating the student with workplace-applicable competencies.
+                        </p>
+                        <!-- Additional content omitted for brevity but would be included in the actual file -->
+                    </div>
+                </div>
+
+                <div class="programme-card">
+                    <h2>Diploma in Information Technology:<br> Extended Curriculum Programme</h2>
+                    <div class="programme-info">
+                        <img src="images/Jugoo.jpg" alt="Extended Curriculum Programme" class="programme-image">
+                        <div class="qualification-details">
+                            <p><strong>NQF Level:</strong> 6</p>
+                            <p><strong>HEQSF Qualification Type:</strong> 63</p>
+                            <p><strong>SAQA Qualification ID:</strong> 96862</p>
+                            <p><strong>SAQA Credits:</strong> Minimum 480</p>
+                            <p><strong>CESM Code:</strong> 06</p>
+                        </div>
+                    </div>
+                    <div class="programme-description">
+                        <p>
+                            As part of the department's access programme, the 3-year IT Diploma qualification is also offered as an Extended Curriculum Programme (ECP) which includes an additional year of study during which students are prepared for the diploma programme. This programme is offered to a limited number of prospective students who do not meet the cut-off criteria for entry into the diploma but demonstrate an aptitude for study in the ICT field. This section explains how the ECP is implemented.
+                        </p>
+                        <!-- Additional content omitted for brevity but would be included in the actual file -->
+                    </div>
+                </div>
+                
+                <div class="programme-card">
+                    <h2>Advanced Diploma in Information and Communication Technology <br>in Applications Development</h2>
+                    <div class="programme-info">
+                        <img src="images/Jugoo.jpg" alt="Advanced Diploma Programme" class="programme-image">
+                        <div class="qualification-details">
+                            <p><strong>NQF Level:</strong> 7</p>
+                            <p><strong>SAQA Qualification ID:</strong> 117974</p>
+                            <p><strong>SAQA Credits:</strong> 120</p>
+                        </div>
+                    </div>
+                    <div class="programme-description">
+                        <p>
+                            The department offers this undergraduate advanced diploma qualification on both a full-time and part-time basis, depending inter-alia on demand and available resources. The modules offered per semester are determined on a two-year cycle and this section refers to the module offerings for the period 2022-2023.
+                        </p>
+                        <!-- Additional content omitted for brevity but would be included in the actual file -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Individual program sections (initially hidden) -->
+            <div id="diploma-program" class="single-program-view" style="display: none;">
+                <div class="programme-card">
+                    <h2>Diploma in Information Technology</h2>
+                    <div class="programme-info">
+                        <img src="images/Jugoo.jpg" alt="IT Diploma Programme" class="programme-image">
+                        <div class="qualification-details">
+                            <p><strong>NQF Level:</strong> 6</p>
+                            <p><strong>HEQSF Qualification Type:</strong> 63</p>
+                            <p><strong>SAQA Credits:</strong> 360</p>
+                            <p><strong>SAQA Qualification ID:</strong> 96862</p>
+                            <p><strong>CESM Code:</strong> 06</p>
+                        </div>
+                    </div>
+                    <div class="programme-description">
+                        <h3>Rationale for Qualification</h3>
+                        <p>
+                            This qualification has been re-aligned to the new HEQSF and takes into account the latest ICT industry requirements. The qualification has also been formulated to reflect the latest workplace-based trends within the ICT industry, to ensure that qualifying learners will have accessibility to employment within the industry. The inclusion of a work-integrated learning component as part of a credit-bearing module at NQF-6 is a unique concept within the University of Technology ICT sector in SA. This, together with the project-based and problem-solving approach embedded in the qualification, will have the defined purpose of capacitating the student with workplace-applicable competencies.
+                        </p>
+                        
+                        <p>
+                            The qualification was established through extensive research, international comparisons, and national discussions between representatives of the ICT industry and academic institutions. The qualification prepares students for entry-level positions in the ICT or related industries in either the software development or the communication networks sub-domains. Students are provided with a general all-round working knowledge of the ICT industry and are required to choose electives at second- and third-year levels to follow a specified career path. The skills shortage within the software development and the communication networks fields, particularly in KZN, led to MUT offering these two specialization streams. The objective of the qualification is to satisfy the industry needs, locally, regionally, and nationally for ICT with specific reference to the areas of Software Development and Communication Networks.
+                        </p>
+
+                        <h3>Statement of Purpose</h3>
+                        <p>
+                            The purpose of the Diploma in Information Technology is to provide a career-focused professional qualification featuring industry-referenced knowledge, skills, and attitudes. A learner will be knowledgeable and competent in the discourse and practice of the Information Technology (IT) discipline, will have specialist knowledge of a particular sub-discipline of IT (depending on chosen electives), and will be subjected to a range of professional and personal development initiatives relevant to the IT industry.
+                        </p>
+
+                        <p>
+                            Accordingly, the main purpose of the qualification may be stated as follow: a qualifying learner at this level is competent in the development of IT systems in a distributed computing environment, and depending on the chosen electives, will be competent in:
+                        </p>
+
+                        <ul>
+                            <li>Software Development: Designing and producing software products and systems to meet specified needs so that they work reliably, and their production and maintenance is cost-effective.</li>
+                            <li>Communications Networks: Designing, developing, implementing and managing networks by integrating knowledge of modern network topologies and protocols to create an appropriate and adequate environment of communication and information sharing.</li>
+                        </ul>
+
+                        <h3>Admission Requirements</h3>
+                        <p>
+                            The Department uses a ranking system based on Grade 12 results and/or results of an entrance test. The minimum requirements to be considered for entry into the programme are as follows: National Senior Certificate (Diploma or higher) with the following minimum scores:
+                        </p>
+                        
+                        <ul>
+                            <li>English First Additional Language (3) OR English Home Language (3) AND Mathematics (3) OR Mathematical Literacy (5)</li>
+                            <li>A minimum of 24 points in the best six subjects excluding Life Orientation and including English and Mathematics / Mathematical Literacy is required.</li>
+                            <li>Senior certificate or equivalent with a minimum of 27 points in the six best performed subjects and a pass in Mathematics and English.</li>
+                            <li>A level 4 national certificate (vocational), with the following minimum requirements:
+                                <ul>
+                                    <li>At least 50% in three fundamental subjects including English;</li>
+                                    <li>At least 60% in three compulsory vocational subjects.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Duration of Study</h3>
+                        <p>
+                            3-years full-time
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="extended-program" class="single-program-view" style="display: none;">
+                <div class="programme-card">
+                    <h2>Diploma in Information Technology:<br> Extended Curriculum Programme</h2>
+                    <div class="programme-info">
+                        <img src="images/Jugoo.jpg" alt="Extended Curriculum Programme" class="programme-image">
+                        <div class="qualification-details">
+                            <p><strong>NQF Level:</strong> 6</p>
+                            <p><strong>HEQSF Qualification Type:</strong> 63</p>
+                            <p><strong>SAQA Qualification ID:</strong> 96862</p>
+                            <p><strong>SAQA Credits:</strong> Minimum 480</p>
+                            <p><strong>CESM Code:</strong> 06</p>
+                        </div>
+                    </div>
+                    <div class="programme-description">
+                        <p>
+                            As part of the department's access programme, the 3-year IT Diploma qualification is also offered as an Extended Curriculum Programme (ECP) which includes an additional year of study during which students are prepared for the diploma programme. This programme is offered to a limited number of prospective students who do not meet the cut-off criteria for entry into the diploma but demonstrate an aptitude for study in the ICT field. This section explains how the ECP is implemented.
+                        </p>
+
+                        <h3>Rationale for Qualification</h3>
+                        <p>
+                            In line with its mission of expanding access to IT qualifications, the Department also offers an extended curriculum programme (4-years minimum duration) intended for those students who are ranked just outside of the cut-off point for the mainstream programme. In their first year of study, students take introductory courses intended to prepare them for study towards the Diploma. After successfully completing all four introductory subjects, students proceed into the first year of the diploma programme. Students who do not pass all subjects may be allowed to take a limited number of diploma subjects in their second year of study, provided special permission is granted by the department and provided that the prerequisites indicated in the curriculum compilation table below are met. The rationale for the mainstream diploma programme has relevance to this qualification as years 2, 3, 4 of the access programme correspond to years 1, 2, 3 of the mainstream programme.
+                        </p>
+
+                        <h3>Statement of Purpose</h3>
+                        <p>
+                            This programme is intended for students who meet the minimum entry criteria, but may not be sufficiently prepared for entry into the 3-year diploma programme. The primary objective of this programme is to expand access to IT qualifications to those students who have demonstrated the aptitude but have not been exposed to opportunities to further prepare them for study in the ICT field. After the first year of study in this programme, the purpose aligns to the mainstream diploma programme.
+                        </p>
+
+                        <h3>Admission Requirements</h3>
+                        <p>
+                            The Department uses a ranking system based on Grade 12 results and/or results of an entrance test. The minimum requirements to be considered for entry into the programme is as follows: National Senior Certificate (Diploma or higher) with the following minimum scores:
+                        </p>
+                        
+                        <ul>
+                            <li>English First Additional Language (3) OR</li>
+                            <li>English Home Language (3) AND</li>
+                            <li>Mathematics (2) OR</li>
+                            <li>Mathematical Literacy (3)</li>
+                        </ul>
+
+                        <h3>Duration of Study</h3>
+                        <p>
+                            4-years full-time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="advanced-program" class="single-program-view" style="display: none;">
+                <div class="programme-card">
+                    <h2>Advanced Diploma in Information and Communication Technology <br>in Applications Development</h2>
+                    <div class="programme-info">
+                        <img src="images/Jugoo.jpg" alt="Advanced Diploma Programme" class="programme-image">
+                        <div class="qualification-details">
+                            <p><strong>NQF Level:</strong> 7</p>
+                            <p><strong>SAQA Qualification ID:</strong> 117974</p>
+                            <p><strong>SAQA Credits:</strong> 120</p>
+                        </div>
+                    </div>
+                    <div class="programme-description">
+                        <p>
+                            The department offers this undergraduate advanced diploma qualification on both a full-time and part-time basis, depending inter-alia on demand and available resources. The modules offered per semester are determined on a two-year cycle and this section refers to the module offerings for the period 2022-2023.
+                        </p>
+
+                        <h3>Rationale for Qualification</h3>
+                        <p>
+                            This qualification is a new Advanced Diploma in Information and Communication Technology (ICT), which has been formulated according to the new HEQSF(2013). The qualification incorporates the latest ICT industry requirements and has been developed in a manner aimed to ensure that qualifying learners will be employable within the ICT industry or are able to operate in other industries where ICT is a key component. This qualification is an advanced undergraduate specialisation qualification that enhances readiness for further research-based study in ICT and related fields at postgraduate levels, as well as providing for employment in the industry.
+                        </p>
+                        
+                        <p>
+                            The design of the qualification caters for the ICT-industry needs for life-long learning, continuing professional development and specialisation at higher levels. The qualification also serves as a platform for entry into postgraduate studies thereby contributing to the national development goals of increasing the number of post graduates in South Africa – increasing access to postgraduate qualifications for previously disadvantaged communities is also an express aim of MUT. This qualification contributes to MUT's vision of becoming a pre-eminent and distinguished university of technology as no other HEI in KwaZulu-Natal currently offers this qualification. It is aligned to MUT's mission of providing advanced technology-based programmes and contributes to creating an equitable and prosperous Southern Africa in which individuals can achieve their full potential by opening access paths to further studies and preparing learners for advanced entry into the ICT industry.
+                        </p>
+
+                        <h3>Statement of Purpose</h3>
+                        <p>
+                            This programme provides for the continuing professional development of ICT practitioners through the inculcation of a deep and systematic understanding of current thinking, practice, theory, and methodology in the Applications Development domain. The qualification also prepares students for postgraduate study through the deepening of their knowledge and understanding of theories, methodologies, and practices in ICT, as well as the development of their ability to formulate, undertake and resolve more complex theoretical and practice-related problems and tasks through the selection and use of appropriate applications development methods and techniques. A qualifying learner will have specialized knowledge of the ICT industry in Applications Development and will be able to manage a software/applications development or other ICT-related environment.
+                        </p>
+
+                        <h3>Minimum Duration of Study</h3>
+                        <p>
+                            Full-time: 1 year<br>
+                            Part-time: 2 years
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+  <!-- Add this content section for Home -->
+<div class="content-section" id="home-section">
+    
+    
+    <!-- Diamonds will be added by JavaScript -->
+    
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <!-- Navigation arrows -->
+        <div class="prev-btn">&#10094;</div>
+        <div class="next-btn">&#10095;</div>
+        
+        <!-- Slides -->
+        <div class="slides">
+            <div class="slide active">
+                <img src="images/Jugoo.jpg" alt="ICT Department Event 1">
+                <div class="slide-text">
+                    <h3>Technology Innovation Day</h3>
+                    <p class="event-date">March 15, 2025</p>
+                    <p>Join us for our annual Technology Innovation Day where students showcase their latest projects. This year features AI applications, mobile development, and cybersecurity solutions developed by our final year students.</p>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <img src="images/Nompilo.jpg" alt="ICT Department Event 2">
+                <div class="slide-text">
+                    <h3>Industry Partnership Workshop</h3>
+                    <p class="event-date">April 20, 2025</p>
+                    <p>Our department is hosting a workshop in collaboration with leading technology companies to provide students with insights into current industry practices and potential internship opportunities.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dots/indicators -->
+        <div class="dots-container">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="content-section" id="timetables-section">
+    <h1>IT Timetables</h1>
+    <div class="diamonds">
+        <div class="diamond blue"></div>
+        <div class="diamond gold"></div>
+        <div class="diamond red"></div>
+    </div>
+    
+    <div class="timetable-links">
+        <a href="#" class="timetable-link">ECP TimeTable 2025</a>
+        <a href="#" class="timetable-link">Year1 TimeTable 2025</a>
+        <a href="#" class="timetable-link">Year2 CNET TimeTable 2025</a>
+        <a href="#" class="timetable-link">Year2 Software Development TimeTable 2025</a>
+        <a href="#" class="timetable-link">Year3 CNET TimeTable 2025</a>
+        <a href="#" class="timetable-link">Year3 Software Development TimeTable 2025</a>
+        <a href="#" class="timetable-link">S1 Advance Diploma TimeTable 2025</a>
+        <a href="#" class="timetable-link">S2 Advance Diploma TimeTable 2025</a>
+        <a href="#" class="timetable-link">Tutorial TimeTable 2025</a>
+        <a href="#" class="timetable-link">Test1 TimeTable 2025</a>
+    </div>
+</div>
+        
+        <div class="content-section" id="handbook-section">
+            <h1>Department Handbook</h1>
+            <p>Handbook content will be displayed here.</p>
+        </div>
+
+        <div class="content-section" id="postgraduate-section">
+            <h1>Postgraduate Studies</h1>
+            <p>Postgraduate studies information will be displayed here.</p>
+        </div>
+
+        <div class="content-section" id="timetables-section">
+            <h1>IT Timetables</h1>
+            <p>Timetables will be displayed here.</p>
+        </div>
+        <div class="content-section" id="staff-section">
+            <h2>Heads of Departments</h2>
+            <ul>       
+                <li class="department-member">
+                    <img src="images/Jugoo.jpg" alt="Dr V Jugoo" class="member-image">
+                    <div class="member-info">
+                        <h3>Dr V Jugoo</h3>
+                        <p>Email: Vikash@mut.ac.za <br> Tel. No.: +27 31 9077153</p>
+                    </div>
+                </li>
+            </ul>
+            
+            <h2>Secretary</h2>
+            <ul>
+                <li class="department-member">
+                    <img src="images/Jugoo.jpg" alt="Miss N Skhakhane" class="member-image">
+                    <div class="member-info">
+                        <h3>Miss N Skhakhane</h3>
+                        <p>Email: skhakhane@mut.ac.za <br> Tel. No.: +27 31 9077153</p>
+                    </div>
+                </li>
+            </ul>
+            
+            <h2>Department Assistant</h2>
+            <ul>
+                <li class="department-member">
+                    <img src="images/Jugoo.jpg" alt="Dr B Mutanga" class="member-image">
+                    <div class="member-info">
+                        <h3>Dr B Mutanga </h3>
+                        <p>Email: betel@mut.ac.za <br> Tel. No.: +27 31 9077153</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>
