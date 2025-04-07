@@ -265,6 +265,7 @@ li::before {
 .single-program-view {
     display: none;
 }
+
 /* Staff Section Styling */
 .department-member {
     display: flex;
@@ -514,5 +515,225 @@ li::before {
 @media (max-width: 768px) {
     .timetable-links {
         padding: 0 20px;
+    }
+    
+    /* Responsive typography */
+    h1 {
+        font-size: 2rem;
+        margin: 30px 0 15px;
+        padding-bottom: 10px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin: 25px 0 10px;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+        margin: 20px 0 8px;
+    }
+    
+    /* Responsive navbar */
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .navbar a {
+        padding: 12px 15px;
+        text-align: center;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown {
+        position: static;
+        width: 100%;
+    }
+    
+    .dropdown-btn {
+        display: none;
+    }
+    
+    .dropdown-content {
+        position: static;
+        min-width: 100%;
+        left: 0;
+        box-shadow: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown-content a {
+        padding: 10px 15px 10px 30px;
+        font-size: 0.9rem;
+    }
+    
+    /* Staff members */
+    .department-member {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+    }
+    
+    .member-image {
+        margin: 0 auto 15px;
+    }
+    
+    /* Program cards */
+    .programme-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .programme-image {
+        margin-bottom: 15px;
+    }
+    
+    .qualification-details {
+        width: 100%;
+    }
+    
+    /* Slides adjustments */
+    .slides {
+        height: 450px; /* Fixed height for mobile */
+    }
+    
+    .slide {
+        /* Keep position absolute for slideshow functionality */
+        height: 100%;
+    }
+    
+    .slide img {
+        height: 250px;
+    }
+    
+    .prev-btn, .next-btn {
+        top: 125px;
+    }
+    
+    .dots-container {
+        bottom: 180px; /* Adjusted position */
+    }
+    
+    /* Diamonds */
+    .diamonds {
+        gap: 20px;
+    }
+    
+    .diamond {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* For small mobile devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    .navbar a {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .programme-card {
+        padding: 15px;
+    }
+    
+    .programme-image {
+        max-width: 150px;
+    }
+    
+    .slide img {
+        height: 200px;
+    }
+    
+    .prev-btn, .next-btn {
+        top: 100px;
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
+    }
+    
+    .dots-container {
+        bottom: 160px; /* Adjusted position for smaller screens */
+    }
+    
+    .dot {
+        height: 10px;
+        width: 10px;
+    }
+    
+    .diamond {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .member-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    /* Adjust slide height for smaller screens */
+    .slides {
+        height: 400px;
+    }
+}
+
+/* For tablets and medium-sized screens */
+@media (min-width: 769px) and (max-width: 992px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .navbar a {
+        padding: 12px 15px;
+    }
+    
+    .dropdown-content {
+        min-width: 250px;
+        left: auto;
+        right: 0;
+    }
+    
+    .programme-info {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .qualification-details {
+        min-width: 100%;
+        margin-top: 15px;
+    }
+}
+
+/* Ensure dropdown always appears on hover/focus on all screen sizes */
+@media (max-width: 768px) {
+    .navbar a[data-section="programs"]:hover + .dropdown .dropdown-content,
+    .navbar a[data-section="programs"]:focus + .dropdown .dropdown-content,
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+        display: block;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .programme-card:hover,
+    .department-member:hover,
+    .timetable-link:hover,
+    .slide {
+        transition: none;
     }
 }
