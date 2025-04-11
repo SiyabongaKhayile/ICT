@@ -8,26 +8,101 @@
     <script src="Home.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Department of Information & Communication Technology</h1>
+        <div class="container">
+            <!-- Navbar moved to top -->
+            <div class="navbar">
+                <a href="#" data-section="home">Home</a>
+                <a href="#" data-section="postgraduate">Postgraduate Studies</a>
+                <a href="#" data-section="information">Information Sheet</a>
+                <a href="#" data-section="timetables">IT Timetables</a>
+                <a href="#" data-section="programs" class="active">Programs</a>
+                <div class="dropdown">
+                    <button class="dropdown-btn"></button>
+                    <div class="dropdown-content">
+                        <a href="#" data-program="diploma">Diploma in Information Technology</a>
+                        <a href="#" data-program="extended">Diploma in Information Technology: Extended Curriculum Programme</a>
+                        <a href="#" data-program="advanced">Advanced Diploma in Information and Communication Technology in Applications Development</a>
+                    </div>
+                </div>
+                <a href="#" data-section="staff">Staff</a>
+            </div>
+
+            
+
+           <!-- Home section with red background top and image bottom -->         
+<div class="content-section" id="home-section">             
+    <!-- Split hero section with red background top half and image bottom half -->             
+    <div class="hero-section">                 
+        <div class="hero-text">                     
+            <h2 class="department-title">Department of Information & Communication Technology</h2>                 
+        </div>                 
+        <div class="hero-image">                     
+            <img src="images/Siyo.jpeg" alt="ICT Department">                 
+        </div>             
+    </div>            
+    
+   <!-- Quick Links Section -->
+<div class="quick-links">
+    <a href="#" class="quick-link">
+        <div class="quick-link-content">
+            <h3 class="quick-link-title">Prospectus</h3>
+            <p class="quick-link-desc">View our complete course offerings, admission requirements, and program details.</p>
+            
+        </div>
+    </a>
+    <a href="#" class="quick-link">
+        <div class="quick-link-content">
+            <h3 class="quick-link-title">General Rules and Regulations</h3>
+            <p class="quick-link-desc">Learn about academic policies, student conduct, and institutional guidelines.</p>
+            
+        </div>
+    </a>
+    <a href="#" class="quick-link">
+        <div class="quick-link-content">
+            <h3 class="quick-link-title">Registration Information</h3>
         
-        <div class="navbar">
-            <a href="#" data-section="home">Home</a>
-            <a href="#" data-section="handbook">Handbook</a>
-            <a href="#" data-section="postgraduate">Postgraduate Studies</a>
-            <a href="#" data-section="information">Information Sheet</a>
-            <a href="#" data-section="timetables">IT Timetables</a>
-            <a href="#" data-section="programs" class="active">Programs</a>
-            <div class="dropdown">
-                <button class="dropdown-btn"></button>
-                <div class="dropdown-content">
-                    <a href="#" data-program="diploma">Diploma in Information Technology</a>
-                    <a href="#" data-program="extended">Diploma in Information Technology: Extended Curriculum Programme</a>
-                    <a href="#" data-program="advanced">Advanced Diploma in Information and Communication Technology in Applications Development</a>
+            <p class="quick-link-desc">Find important dates, registration procedures, and payment information.</p>
+
+        </div>
+    </a>
+</div>
+     
+            <!-- Full width slideshow -->
+            <div class="slideshow-container">
+                <!-- Navigation arrows -->
+                <div class="prev-btn">&#10094;</div>
+                <div class="next-btn">&#10095;</div>
+                
+                <!-- Slides -->
+                <div class="slides">
+                    <div class="slide active">
+                        <img src="images/Jugoo.jpg" alt="ICT Department Event 1">
+                        <div class="slide-text">
+                            <h3>Technology Innovation Day</h3>
+                            <p class="event-date">March 15, 2025</p>
+                            <p>Join us for our annual Technology Innovation Day where students showcase their latest projects. This year features AI applications, mobile development, and cybersecurity solutions developed by our final year students.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="images/Nompilo.jpg" alt="ICT Department Event 2">
+                        <div class="slide-text">
+                            <h3>Industry Partnership Workshop</h3>
+                            <p class="event-date">April 20, 2025</p>
+                            <p>Our department is hosting a workshop in collaboration with leading technology companies to provide students with insights into current industry practices and potential internship opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dots/indicators -->
+                <div class="dots-container">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
                 </div>
             </div>
-            <a href="#" data-section="staff">Staff</a>
         </div>
+
+    
 
         <div class="content-section" id="information-section">
             <h1>Why Study ICT?</h1>
@@ -262,48 +337,6 @@
                 </div>
             </div>
         </div>
-
-
-  <!-- Add this content section for Home -->
-<div class="content-section" id="home-section">
-    
-    
-    <!-- Diamonds will be added by JavaScript -->
-    
-    <!-- Slideshow container -->
-    <div class="slideshow-container">
-        <!-- Navigation arrows -->
-        <div class="prev-btn">&#10094;</div>
-        <div class="next-btn">&#10095;</div>
-        
-        <!-- Slides -->
-        <div class="slides">
-            <div class="slide active">
-                <img src="images/Jugoo.jpg" alt="ICT Department Event 1">
-                <div class="slide-text">
-                    <h3>Technology Innovation Day</h3>
-                    <p class="event-date">March 15, 2025</p>
-                    <p>Join us for our annual Technology Innovation Day where students showcase their latest projects. This year features AI applications, mobile development, and cybersecurity solutions developed by our final year students.</p>
-                </div>
-            </div>
-            
-            <div class="slide">
-                <img src="images/Nompilo.jpg" alt="ICT Department Event 2">
-                <div class="slide-text">
-                    <h3>Industry Partnership Workshop</h3>
-                    <p class="event-date">April 20, 2025</p>
-                    <p>Our department is hosting a workshop in collaboration with leading technology companies to provide students with insights into current industry practices and potential internship opportunities.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Dots/indicators -->
-        <div class="dots-container">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-        </div>
-    </div>
-</div>
 
 
 <div class="content-section" id="timetables-section">
