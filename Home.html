@@ -5,104 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Contacts - Department of ICT</title>
     <link rel="stylesheet" href="Home.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- Add this in the <head> section of your HTML document -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Custom JS -->
     <script src="Home.js" defer></script>
 </head>
 <body>
-        <div class="container">
-            <!-- Navbar moved to top -->
-            <div class="navbar">
-                <a href="#" data-section="home">Home</a>
-                <a href="#" data-section="postgraduate">Postgraduate Studies</a>
-                <a href="#" data-section="information">Information Sheet</a>
-                <a href="#" data-section="timetables">IT Timetables</a>
-                <a href="#" data-section="programs" class="active">Programs</a>
-                <div class="dropdown">
-                    <button class="dropdown-btn"></button>
-                    <div class="dropdown-content">
-                        <a href="#" data-program="diploma">Diploma in Information Technology</a>
-                        <a href="#" data-program="extended">Diploma in Information Technology: Extended Curriculum Programme</a>
-                        <a href="#" data-program="advanced">Advanced Diploma in Information and Communication Technology in Applications Development</a>
-                    </div>
+    <div class="container">
+        <!-- Navbar moved to top -->
+        <div class="navbar">
+            <a href="#" data-section="home">Home</a>
+            <a href="#" data-section="postgraduate">Postgraduate Studies</a>
+            <a href="#" data-section="information">Information Sheet</a>
+            <a href="#" data-section="timetables">IT Timetables</a>
+            <a href="#" data-section="programs" class="active">Programs</a>
+            <div class="dropdown">
+                <button class="dropdown-btn"></button>
+                <div class="dropdown-content">
+                    <a href="#" data-program="diploma">Diploma in Information Technology</a>
+                    <a href="#" data-program="extended">Diploma in Information Technology: Extended Curriculum Programme</a>
+                    <a href="#" data-program="advanced">Advanced Diploma in Information and Communication Technology in Applications Development</a>
                 </div>
-                <a href="#" data-section="staff">Staff</a>
             </div>
-
-            
-
-           <!-- Home section with red background top and image bottom -->         
-<div class="content-section" id="home-section">             
-    <!-- Split hero section with red background top half and image bottom half -->             
-    <div class="hero-section">                 
-        <div class="hero-text">                     
-            <h2 class="department-title">Department of Information & Communication Technology</h2>                 
-        </div>                 
-        <div class="hero-image">                     
-            <img src="images/Siyo.jpeg" alt="ICT Department">                 
-        </div>             
-    </div>            
-    
-   <!-- Quick Links Section -->
-<div class="quick-links">
-    <a href="#" class="quick-link">
-        <div class="quick-link-content">
-            <h3 class="quick-link-title">Prospectus</h3>
-            <p class="quick-link-desc">View our complete course offerings, admission requirements, and program details.</p>
-            
+            <a href="#" data-section="sponsors">Partnerships</a>
+            <a href="#" data-section="staff">Staff</a>
+            <!-- Mobile menu toggle -->
+            <div class="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-    </a>
-    <a href="#" class="quick-link">
-        <div class="quick-link-content">
-            <h3 class="quick-link-title">General Rules and Regulations</h3>
-            <p class="quick-link-desc">Learn about academic policies, student conduct, and institutional guidelines.</p>
-            
-        </div>
-    </a>
-    <a href="#" class="quick-link">
-        <div class="quick-link-content">
-            <h3 class="quick-link-title">Registration Information</h3>
-        
-            <p class="quick-link-desc">Find important dates, registration procedures, and payment information.</p>
 
-        </div>
-    </a>
-</div>
-     
-            <!-- Full width slideshow -->
+        <!-- Home section with red background top and image bottom -->         
+        <div class="content-section" id="home-section">             
+            <!-- Split hero section with red background top half and image bottom half -->             
+            <div class="hero-section">                 
+                <div class="hero-text">                     
+                    <h2 class="department-title">Department of Information & Communication Technology</h2>                 
+                </div>                 
+                <div class="hero-image">                     
+                    <img src="images/Siyo.jpeg" alt="ICT Department">                 
+                </div>             
+            </div>            
+            
+            <!-- Quick Links Section -->
+            <div class="quick-links">
+                <a href="#" class="quick-link">
+                    <div class="quick-link-content">
+                        <h3 class="quick-link-title">Prospectus</h3>
+                        <p class="quick-link-desc">View our complete course offerings, admission requirements, and program details.</p>
+                        
+                    </div>
+                </a>
+                <a href="#" class="quick-link">
+                    <div class="quick-link-content">
+                        <h3 class="quick-link-title">General Rules and Regulations</h3>
+                        <p class="quick-link-desc">Learn about academic policies, student conduct, and institutional guidelines.</p>
+                        
+                    </div>
+                </a>
+                <a href="#" class="quick-link">
+                    <div class="quick-link-content">
+                        <h3 class="quick-link-title">Registration Information</h3>
+                    
+                        <p class="quick-link-desc">Find important dates, registration procedures, and payment information.</p>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Full width slideshow - Dynamic content will be loaded from Firebase -->
             <div class="slideshow-container">
                 <!-- Navigation arrows -->
                 <div class="prev-btn">&#10094;</div>
                 <div class="next-btn">&#10095;</div>
                 
-                <!-- Slides -->
+                <!-- Slides will be dynamically loaded here -->
                 <div class="slides">
-                    <div class="slide active">
-                        <img src="images/Jugoo.jpg" alt="ICT Department Event 1">
+                    <!-- Empty container to be filled by JavaScript from Firebase -->
+                    <div class="slide loading-placeholder">
                         <div class="slide-text">
-                            <h3>Technology Innovation Day</h3>
-                            <p class="event-date">March 15, 2025</p>
-                            <p>Join us for our annual Technology Innovation Day where students showcase their latest projects. This year features AI applications, mobile development, and cybersecurity solutions developed by our final year students.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <img src="images/Nompilo.jpg" alt="ICT Department Event 2">
-                        <div class="slide-text">
-                            <h3>Industry Partnership Workshop</h3>
-                            <p class="event-date">April 20, 2025</p>
-                            <p>Our department is hosting a workshop in collaboration with leading technology companies to provide students with insights into current industry practices and potential internship opportunities.</p>
+                            <h3>Loading events...</h3>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Dots/indicators -->
-                <div class="dots-container">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                </div>
+                <!-- Dots/indicators will be dynamically generated -->
+                <div class="dots-container"></div>
             </div>
         </div>
-
-    
 
         <div class="content-section" id="information-section">
             <h1>Why Study ICT?</h1>
@@ -338,28 +336,20 @@
             </div>
         </div>
 
-
-<div class="content-section" id="timetables-section">
-    <h1>IT Timetables</h1>
-    <div class="diamonds">
-        <div class="diamond blue"></div>
-        <div class="diamond gold"></div>
-        <div class="diamond red"></div>
-    </div>
-    
-    <div class="timetable-links">
-        <a href="#" class="timetable-link">ECP TimeTable 2025</a>
-        <a href="#" class="timetable-link">Year1 TimeTable 2025</a>
-        <a href="#" class="timetable-link">Year2 CNET TimeTable 2025</a>
-        <a href="#" class="timetable-link">Year2 Software Development TimeTable 2025</a>
-        <a href="#" class="timetable-link">Year3 CNET TimeTable 2025</a>
-        <a href="#" class="timetable-link">Year3 Software Development TimeTable 2025</a>
-        <a href="#" class="timetable-link">S1 Advance Diploma TimeTable 2025</a>
-        <a href="#" class="timetable-link">S2 Advance Diploma TimeTable 2025</a>
-        <a href="#" class="timetable-link">Tutorial TimeTable 2025</a>
-        <a href="#" class="timetable-link">Test1 TimeTable 2025</a>
-    </div>
-</div>
+        <div class="content-section" id="timetables-section">
+            <h1>IT Timetables</h1>
+            <div class="diamonds">
+                <div class="diamond blue"></div>
+                <div class="diamond gold"></div>
+                <div class="diamond red"></div>
+            </div>
+            
+            <!-- Timetable links will be dynamically loaded from Firebase -->
+            <div class="timetable-links">
+                <!-- Loading placeholder -->
+                <p class="loading-message">Loading timetables...</p>
+            </div>
+        </div>
         
         <div class="content-section" id="handbook-section">
             <h1>Department Handbook</h1>
@@ -371,45 +361,95 @@
             <p>Postgraduate studies information will be displayed here.</p>
         </div>
 
-        <div class="content-section" id="timetables-section">
-            <h1>IT Timetables</h1>
-            <p>Timetables will be displayed here.</p>
-        </div>
+
+
         <div class="content-section" id="staff-section">
-            <h2>Heads of Departments</h2>
-            <ul>       
-                <li class="department-member">
-                    <img src="images/Jugoo.jpg" alt="Dr V Jugoo" class="member-image">
-                    <div class="member-info">
-                        <h3>Dr V Jugoo</h3>
-                        <p>Email: Vikash@mut.ac.za <br> Tel. No.: +27 31 9077153</p>
-                    </div>
-                </li>
-            </ul>
-            
-            <h2>Secretary</h2>
-            <ul>
-                <li class="department-member">
-                    <img src="images/Jugoo.jpg" alt="Miss N Skhakhane" class="member-image">
-                    <div class="member-info">
-                        <h3>Miss N Skhakhane</h3>
-                        <p>Email: skhakhane@mut.ac.za <br> Tel. No.: +27 31 9077153</p>
-                    </div>
-                </li>
-            </ul>
-            
-            <h2>Department Assistant</h2>
-            <ul>
-                <li class="department-member">
-                    <img src="images/Jugoo.jpg" alt="Dr B Mutanga" class="member-image">
-                    <div class="member-info">
-                        <h3>Dr B Mutanga </h3>
-                        <p>Email: betel@mut.ac.za <br> Tel. No.: +27 31 9077153</p>
-                    </div>
-                </li>
-            </ul>
+            <!-- Staff section content -->
+            <h1>Staff</h1>
+            <div class="diamonds">
+                <div class="diamond blue"></div>
+                <div class="diamond gold"></div>
+                <div class="diamond red"></div>
+            </div>
+            <!-- Staff container will be added here by JavaScript -->
         </div>
+
+
+
+        
+     <div class="content-section" id="sponsors-section">
+    <h1>Our Partnership</h1>
+    <div class="diamonds">
+        <div class="diamond blue"></div>
+        <div class="diamond gold"></div>
+        <div class="diamond red"></div>
     </div>
     
+    <!-- Enhanced top content section -->
+    <div class="sponsor-introduction">
+        <p>The Department of Information & Communication Technology is proud to be supported by leading organizations from the sports and technology sectors who share our commitment to excellence and innovation.</p>
+        
+        <p>Our prestigious partners, including globally recognized football clubs like Real Madrid and Orlando Pirates, along with prominent brands such as Betway, Nedbank, MTN8, and PSL, provide our department with valuable resources and real-world opportunities for our students.</p>
+        
+        <p>These strategic partnerships enable us to offer enhanced educational experiences through funding for cutting-edge equipment, specialized workshops, and exclusive internship programs that prepare our students for successful careers in the sports technology industry.</p>
+        
+        <p>We value these collaborations that bring football and technology together, creating exciting opportunities for innovation in sports analytics, digital marketing, and advanced communications systems.</p>
+    </div>
+    
+    <!-- Sponsors container will be populated dynamically by JavaScript -->
+    <div class="sponsors-container">
+        <p class="loading-message">Loading sponsors...</p>
+        <!-- The sponsors-list div and sponsor items will be created dynamically by the loadSponsors() JavaScript function -->
+    </div>
+    
+    <!-- Enhanced bottom content section -->
+    <div class="sponsor-benefits">
+        <h2>Sports Technology Partnership Benefits</h2>
+        <p>Our sponsorship program connects sports organizations and technology companies in mutually beneficial relationships:</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <h3>Brand Association</h3>
+                <p>Strategic placement of your logo across our digital platforms, campus facilities, and at our annual Sports Tech Innovation Summit, connecting your brand with the next generation of sports technology professionals.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <h3>Talent Development</h3>
+                <p>First access to our specialized talent pool trained in sports analytics, digital communications, and information systems specifically tailored to sporting environments.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <h3>Innovation Projects</h3>
+                <p>Collaborate with our research teams on customized sports technology projects, from fan engagement applications to advanced performance analysis systems.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <h3>Industry Integration</h3>
+                <p>Opportunities to showcase your technological solutions at our department events and integrate real-world challenges into our curriculum.</p>
+            </div>
+        </div>
+        
+        <div class="sponsor-showcase">
+            <h2>Current Partnership Spotlight</h2>
+            <p>Our diverse array of sponsors represents the exciting intersection of sports and technology. Real Madrid and Orlando Pirates bring global football expertise, while Betway contributes innovative digital engagement strategies. Nedbank provides financial technology insights, and both MTN8 and PSL offer local sports industry connections.</p>
+            
+            <p>This unique combination of partners allows our students to explore multiple facets of sports technology, from international football analytics to local tournament management systems.</p>
+        </div>
+        
+        <div class="become-sponsor">
+            <h2>Join Our Partnership Network</h2>
+            <p>Whether you're a sports organization looking to leverage technology or a tech company interested in sports applications, we offer customized partnership opportunities. Contact our Sports Technology Partnerships Team at <strong>sportstech@ictdepartment.mut</strong> to discuss how we can create a collaborative relationship that benefits both your organization and our educational mission.</p>
+            
+            <p>We're particularly interested in expanding our partnerships with organizations that can provide our students with hands-on experience in emerging areas such as sports data science, digital broadcasting technologies, and immersive fan experiences.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Loading indicator -->
+<div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Loading content...</p>
+</div>
+   
 </body>
 </html>

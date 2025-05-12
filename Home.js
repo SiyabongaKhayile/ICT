@@ -60,16 +60,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     staffMembers.push(staffData);
                 });
                 
-                // Define position priority order - using a more robust approach
+                // Define position priority order - FIXED TO HANDLE ALL POSITIONS CORRECTLY
                 const getPositionRank = (position) => {
                     // Convert to lowercase and trim for case-insensitive, whitespace-tolerant comparison
                     const pos = (position || '').toLowerCase().trim();
                     
-                    if (pos.includes('head of office')) return 1;
-                    if (pos.includes('department assistance')) return 2;
-                    if (pos.includes('secretary')) return 3;
-                    if (pos === 'lecturer') return 4;
-                    if (pos.includes('junior lecturer')) return 5;
+                    // Fixed position hierarchy
+                    if (pos.includes('head of department')) return 1;
+                    if (pos === 'head of office') return 2;
+                    if (pos.includes('department assistance')) return 3;
+                    if (pos.includes('secretary')) return 4;
+                    if (pos === 'lecturer') return 5; // Fixed: Removed extra parenthesis
+                    if (pos.includes('junior lecturer')) return 6;
                     return 999; // Default for unknown positions
                 };
                 
@@ -109,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 staffContainer.innerHTML = '<p>Error loading staff information. Please try again later.</p>';
             });
     }
+
     // Fetch timetables from Firestore
     function loadTimetables() {
         const timetableLinksContainer = document.querySelector('.timetable-links');
@@ -292,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (h1) {
                 h1.insertAdjacentElement('afterend', diamondsContainer);
             } else {
-                // If no h1, insert at the beginning of section
+                // Insert at the beginning of section
                 section.insertBefore(diamondsContainer, section.firstChild);
             }
         }
@@ -300,6 +303,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to show section content
     function showSection(sectionId) {
+        console.log("Showing section:", sectionId); // Debug log
+        
         // Hide all sections
         contentSections.forEach(section => {
             section.classList.remove('active');
@@ -314,6 +319,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Add diamonds to the section
             addDiamonds(selectedSection);
+            
+            // Load section-specific content if needed
+            if (sectionId === 'sponsors') {
+                loadSponsors();
+            } else if (sectionId === 'staff') {
+                loadStaffMembers();
+            } else if (sectionId === 'timetables') {
+                loadTimetables();
+            }
+        } else {
+            console.error(`Section with ID "${sectionId}-section" not found`); // Debug log
         }
         
         // Update active state in navbar
@@ -326,7 +342,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset program views if showing programs section
         if (sectionId === 'programs') {
-            document.getElementById('all-programs').style.display = 'block';
+            const allPrograms = document.getElementById('all-programs');
+            if (allPrograms) {
+                allPrograms.style.display = 'block';
+            }
             document.querySelectorAll('.single-program-view').forEach(view => {
                 view.style.display = 'none';
             });
@@ -336,7 +355,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to show specific program
     function showProgram(programId) {
         // Hide all program views
-        document.getElementById('all-programs').style.display = 'none';
+        const allPrograms = document.getElementById('all-programs');
+        if (allPrograms) {
+            allPrograms.style.display = 'none';
+        }
         document.querySelectorAll('.single-program-view').forEach(view => {
             view.style.display = 'none';
         });
@@ -354,11 +376,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         const programsSection = document.getElementById('programs-section');
-        programsSection.style.display = 'block';
-        programsSection.classList.add('active');
-        
-        // Add diamonds to the programs section
-        addDiamonds(programsSection);
+        if (programsSection) {
+            programsSection.style.display = 'block';
+            programsSection.classList.add('active');
+            
+            // Add diamonds to the programs section
+            addDiamonds(programsSection);
+        }
         
         // Update active navbar link
         navLinks.forEach(link => {
@@ -496,18 +520,214 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Load content from Firestore
-    loadTimetables();
-    loadSlideshow();
-    loadStaffMembers();
-    loadQuickLinks();
+
+// Function to load sponsors and arrange them in an oval
+function loadSponsors() {
+    console.log("Loading sponsors..."); // Debug log
     
-    // Change default section to home
-    showSection('home');
+    // Find the sponsors container
+    const sponsorsSection = document.getElementById('sponsors-section');
     
-    // If Programs link has active class, show programs section
-    const programsLink = document.querySelector('.navbar a[data-section="programs"]');
-    if (programsLink && programsLink.classList.contains('active')) {
-        showSection('programs');
+    if (!sponsorsSection) {
+        console.error("Sponsors section not found"); // Debug log
+        return;
+    }
+    
+    // Find or create the sponsors-container
+    let sponsorsContainer = sponsorsSection.querySelector('.sponsors-container');
+    if (!sponsorsContainer) {
+        console.log("Creating sponsors container"); // Debug log
+        sponsorsContainer = document.createElement('div');
+        sponsorsContainer.className = 'sponsors-container';
+        sponsorsSection.appendChild(sponsorsContainer);
+    }
+    
+    console.log("Sponsors container found/created, proceeding to load sponsors"); // Debug log
+    
+    // Clear existing sponsors
+    sponsorsContainer.innerHTML = '<p class="loading-message">Loading sponsors...</p>';
+    
+    // Get sponsors from Firestore
+    db.collection('sponsors').get()
+        .then((querySnapshot) => {
+            console.log(`Found ${querySnapshot.size} sponsors`); // Debug log
+            
+            if (querySnapshot.empty) {
+                sponsorsContainer.innerHTML = '<p>No sponsors available</p>';
+                return;
+            }
+            
+            // Clear loading message
+            sponsorsContainer.innerHTML = '';
+            
+            // Create sponsors list container for oval layout - with better dimensions
+            const sponsorsList = document.createElement('div');
+            sponsorsList.className = 'sponsors-list';
+            sponsorsList.style.position = 'relative';
+            sponsorsList.style.width = '750px';  // Width for oval - slightly wider
+            sponsorsList.style.height = '380px'; // Height for oval - slightly shorter for more oval shape
+            sponsorsList.style.margin = '40px auto 20px'; // More space above to separate from text
+            sponsorsContainer.appendChild(sponsorsList);
+            
+            // Get all sponsor data
+            const sponsors = [];
+            querySnapshot.forEach((doc) => {
+                const sponsorData = doc.data();
+                console.log("Sponsor data:", sponsorData); // Debug log
+                sponsors.push(sponsorData);
+            });
+            
+            // Calculate positions in an oval for each sponsor
+            const totalSponsors = sponsors.length;
+            
+            // Adjust logo size based on number of sponsors to prevent overlap
+            let logoSize = 120; // Default logo size
+            if (totalSponsors > 12) {
+                logoSize = 100;
+            }
+            if (totalSponsors > 16) {
+                logoSize = 80;
+            }
+            
+            sponsors.forEach((sponsorData, index) => {
+                console.log("Processing sponsor:", sponsorData.name); // Debug log
+                
+                // Calculate position in oval
+                const angleStep = (2 * Math.PI) / totalSponsors;
+                const angle = index * angleStep;
+                
+                // Oval dimensions - horizontal radius larger than vertical radius for pronounced oval
+                const radiusX = 320; // Horizontal radius - increased for wider oval
+                const radiusY = 150; // Vertical radius - decreased for more oval shape
+                
+                // Calculate position along the oval
+                const x = radiusX * Math.cos(angle) + 375; // Center X (adjusted for wider width)
+                const y = radiusY * Math.sin(angle) + 190; // Center Y (adjusted for height)
+                
+                // Create sponsor element
+                const sponsor = document.createElement('div');
+                sponsor.className = 'sponsor-item';
+                
+                // Set size based on calculation above
+                sponsor.style.width = `${logoSize}px`;
+                sponsor.style.height = `${logoSize}px`;
+                
+                // Position absolutely within the oval
+                sponsor.style.position = 'absolute';
+                sponsor.style.left = `${x - (logoSize/2)}px`; // Center the item
+                sponsor.style.top = `${y - (logoSize/2)}px`;  // Center the item
+                
+                // Add level class if available
+                if (sponsorData.level) {
+                    sponsor.classList.add(sponsorData.level.toLowerCase());
+                }
+                
+                // Create logo container - SQUARE INSTEAD OF ROUND
+                const logoContainer = document.createElement('div');
+                logoContainer.className = 'sponsor-logo-container';
+                logoContainer.style.width = `${logoSize * 0.8}px`; // Adjust to logo size
+                logoContainer.style.height = `${logoSize * 0.8}px`; // Adjust to logo size
+                logoContainer.style.borderRadius = '0'; // Square corners instead of circle
+                
+                // Create logo image - ensure proper rendering in square
+                const logoImg = document.createElement('img');
+                logoImg.src = sponsorData.logoURL || '#';
+                logoImg.alt = sponsorData.name || 'Sponsor';
+                logoImg.className = 'sponsor-logo';
+                logoImg.style.width = '90%';
+                logoImg.style.height = '90%';
+                logoImg.style.objectFit = 'contain';
+                logoImg.onerror = function() {
+                    this.src = 'images/placeholder-logo.png'; // Fallback image
+                    console.log("Image failed to load for:", sponsorData.name);
+                };
+                
+                // Add logo to container
+                logoContainer.appendChild(logoImg);
+                
+                // Create name element
+                const nameElem = document.createElement('p');
+                nameElem.className = 'sponsor-name';
+                nameElem.textContent = sponsorData.name || 'Sponsor';
+                nameElem.style.fontSize = `${logoSize * 0.12}px`; // Proportional font size
+                
+                // Add elements to sponsor
+                sponsor.appendChild(logoContainer);
+                sponsor.appendChild(nameElem);
+                
+                // Add click handler if website URL is available
+                if (sponsorData.websiteURL) {
+                    sponsor.style.cursor = 'pointer';
+                    sponsor.addEventListener('click', function() {
+                        window.open(sponsorData.websiteURL, '_blank');
+                    });
+                    
+                    // Add tooltip
+                    sponsor.title = `Visit ${sponsorData.name} website`;
+                }
+                
+                // Add sponsor to container
+                sponsorsList.appendChild(sponsor);
+            });
+            
+            console.log("Sponsors loaded successfully"); // Debug log
+        })
+        .catch((error) => {
+            console.error("Error fetching sponsors: ", error);
+            sponsorsContainer.innerHTML = '<p>Error loading sponsors. Please try again later.</p>';
+        });
+}
+
+// No need for addSponsorsTitle since the HTML already has <h1>Our Sponsors</h1>
+
+// Call function when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadSponsors();
+});
+
+
+    // FIXED: Load content from Firestore BEFORE showing home section
+    Promise.all([
+        new Promise(resolve => {
+            loadTimetables();
+            resolve();
+        }),
+        new Promise(resolve => {
+            loadSlideshow();
+            resolve();
+        }),
+        new Promise(resolve => {
+            loadStaffMembers();
+            resolve();
+        }),
+        new Promise(resolve => {
+            loadQuickLinks();
+            resolve();
+        }),
+        // Pre-load sponsors data
+        new Promise(resolve => {
+            loadSponsors();
+            resolve();
+        })
+    ]).then(() => {
+        console.log("All content loaded, now showing home section"); // Debug log
+        // Show home section after all content is loaded
+        showSection('home');
+        
+        // Add active class to home link in navbar
+        const homeLink = document.querySelector('.navbar a[data-section="home"]');
+        if (homeLink) {
+            homeLink.classList.add('active');
+        }
+    }).catch(error => {
+        console.error("Error loading content:", error);
+        // Show home section anyway even if there's an error
+        showSection('home');
+    });
+    
+    // Hide the loading overlay once everything is loaded
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        loadingOverlay.style.display = 'none';
     }
 });
