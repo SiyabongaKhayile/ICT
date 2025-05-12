@@ -66,7 +66,7 @@ h3 {
 .navbar {
     display: flex;
     justify-content: center;
-    background: linear-gradient(to right, white, white,  white);
+    background: linear-gradient(to right, white, white, white);
     padding: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -76,7 +76,7 @@ h3 {
 }
 
 .navbar a {
-    color:  #005070;
+    color: #005070;
     text-decoration: none;
     padding: 15px 25px;
     font-size: 1rem;
@@ -89,7 +89,6 @@ h3 {
     background-color: rgba(255, 255, 255, 0.1);
     border-bottom: 3px solid #C99115;
 }
-
 
 .dropdown {
     position: relative;
@@ -184,12 +183,13 @@ li::before {
     left: 0;
 }
 
-/* Diamond styling */
+/* Diamond styling - positioned right below navbar */
 .diamonds {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin: 30px 0;
+    margin: 5px 0 30px 0; /* Reduced top margin to position closer to navbar */
+    padding-top: 5px; /* Small padding to create minimal space between navbar and diamonds */
 }
 
 .diamond {
@@ -215,6 +215,7 @@ li::before {
 .diamond.red {
     background: linear-gradient(135deg, #a13634, #691f1d);
 }
+
 
 /* Program Cards Styling */
 .programme-card {
@@ -926,4 +927,193 @@ li::before {
     .quick-link-title {
         font-size: 1.5rem;
     }
+}
+
+/* Sponsors section styling */
+.sponsors-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 80px; /* Increased bottom margin for more space */
+    padding: 15px;
+}
+
+/* Reset text color to black for all content first */
+.content-section p {
+    color: #000000;
+}
+
+/* Style the main heading "Our Sponsors" */
+.content-section h1 {
+    color: #691f1d;
+}
+
+/* Specifically target only the requested headings for color and underline */
+.content-section h2,
+.benefit-item h3 {
+    color: #691f1d;
+    text-decoration: underline;
+    text-decoration-color: #691f1d;
+    text-decoration-thickness: 2px;
+    padding-bottom: 5px;
+}
+
+/* Center specific h2 headings */
+.sponsor-benefits h2,
+.sponsor-showcase h2,
+.become-sponsor h2 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sponsors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.sponsor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+    height: 180px;
+    background-color: transparent;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    border: none !important;
+    overflow: visible;
+}
+
+.sponsor-item:hover {
+    transform: translateY(-5px);
+}
+
+.sponsor-logo-container {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 0; /* Changed from 50% to 0 to make square instead of circle */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sponsor-logo {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.sponsor-name {
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Different styles based on sponsorship level */
+.sponsor-item.platinum .sponsor-logo-container {
+    background-color: #e5e4e2;
+}
+
+.sponsor-item.gold .sponsor-logo-container {
+    background-color: #ffd700;
+}
+
+.sponsor-item.silver .sponsor-logo-container {
+    background-color: #c0c0c0;
+}
+
+.sponsor-item.bronze .sponsor-logo-container {
+    background-color: #cd7f32;
+}
+
+/* Additional styling for new sections */
+.sponsor-introduction, .sponsor-benefits, .sponsor-showcase, .become-sponsor {
+    margin: 40px 0;
+    line-height: 1.6;
+}
+
+.sponsor-introduction p, .sponsor-benefits p, .sponsor-showcase p, .become-sponsor p {
+    margin-bottom: 15px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+/* Add vertical line ONLY to benefit-item cards */
+.benefit-item {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: relative; /* Required for vertical line positioning */
+    padding-left: 25px; /* Make space for the vertical line */
+}
+
+/* Add vertical line to benefit-item cards */
+.benefit-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15px;
+    bottom: 15px;
+    width: 3px;
+    background-color: #691f1d;
+}
+
+.benefit-item h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+h2 {
+    margin: 40px 0 20px;
+    font-size: 24px;
+}
+
+/* Loading message styling */
+.loading-message {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin: 20px 0;
+}
+
+/* Ensure sponsor section stays at the top with space after */
+.sponsors-section {
+    order: -1; /* If using flexbox for page layout */
+    position: relative;
+    z-index: 10; /* Ensure it stays above other content */
+    margin-bottom: 60px; /* Add space between logos and paragraphs */
+    padding-bottom: 30px; /* Additional padding for separation */
+    border-bottom: 1px solid #eee; /* Optional: subtle divider */
+}
+
+/* If you need to target a specific container */
+body > .main-content > .sponsors-container,
+main > .sponsors-container,
+#content > .sponsors-container {
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+/* Add space after the sponsors section */
+.sponsors-container + *,
+.sponsors-section + * {
+    margin-top: 60px; /* Space after the sponsors section before any content */
+    padding-top: 20px; /* Additional padding for better separation */
 }
