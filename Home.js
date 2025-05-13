@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Original JavaScript code (Keep all the original code)
-    const navLinks = document.querySelectorAll('.navbar a:not(.dropdown-content a)');
+   const navLinks = document.querySelectorAll('.navbar a:not(.dropdown-content a)');
     const programLinks = document.querySelectorAll('.dropdown-content a');
     const contentSections = document.querySelectorAll('.content-section');
+    const informationLink = document.querySelector('.dropdown-content a[data-section="information"]');
+    
     
     // Firebase initialization
     firebase.initializeApp({
@@ -13,6 +15,66 @@ document.addEventListener('DOMContentLoaded', function() {
         messagingSenderId: "133527156661",
         appId: "1:133527156661:web:8d8794eeae33b16dabcbfc"
     });
+
+
+      function createStars() {
+            const starContainer = document.getElementById('starContainer');
+            if (!starContainer) {
+                console.error('Star container not found!');
+                return;
+            }
+            
+            const colors = ['#ffffff', '#C99115', '#006281'];
+            const numberOfStars = 30;
+            
+            // Remove any existing stars first
+            const existingStars = starContainer.querySelectorAll('.star');
+            existingStars.forEach(star => star.remove());
+            
+            // Create new stars
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random star properties
+                const size = Math.random() * 5 + 3; // Star size between 3-8px
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const top = Math.random() * 100; // Random vertical position
+                const left = Math.random() * 100; // Random horizontal position
+                const duration = Math.random() * 5 + 3; // Animation duration between 3-8s
+                const delay = Math.random() * 5; // Random delay to stagger animations
+                
+                // Apply styles
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.backgroundColor = color;
+                star.style.boxShadow = `0 0 ${size/2}px ${color}`;
+                star.style.top = `${top}%`;
+                star.style.left = `${left}%`;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${delay}s`;
+                
+                starContainer.appendChild(star);
+            }
+        }
+
+         createStars();
+        
+        // Also create stars when DOM is fully loaded (backup)
+        document.addEventListener('DOMContentLoaded', createStars);
+        
+        // Create stars again after 1 second (final backup)
+        setTimeout(createStars, 1000);
+
+     function initializeSections() {
+        // Hide all sections except home initially
+        contentSections.forEach(section => {
+            if (section.id !== 'home-section') {
+                section.style.display = 'none';
+                section.classList.remove('active');
+            }
+        });
+    }
     
     const db = firebase.firestore();
     
@@ -302,115 +364,125 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Function to show section content
-    function showSection(sectionId) {
-        console.log("Showing section:", sectionId); // Debug log
+   // Function to show a specific section
+function showSection(sectionId) {
+    console.log("Showing section:", sectionId); // Debug log
+    
+    // Hide all sections properly
+    contentSections.forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+    });
+    
+    // Show the selected section
+    const selectedSection = document.getElementById(sectionId + '-section');
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+        selectedSection.classList.add('active');
         
-        // Hide all sections
-        contentSections.forEach(section => {
-            section.classList.remove('active');
-            section.style.display = 'none';
-        });
+        // Add diamonds to the section
+        addDiamonds(selectedSection);
         
-        // Show the selected section
-        const selectedSection = document.getElementById(sectionId + '-section');
-        if (selectedSection) {
-            selectedSection.style.display = 'block';
-            selectedSection.classList.add('active');
-            
-            // Add diamonds to the section
-            addDiamonds(selectedSection);
-            
-            // Load section-specific content if needed
-            if (sectionId === 'sponsors') {
-                loadSponsors();
-            } else if (sectionId === 'staff') {
-                loadStaffMembers();
-            } else if (sectionId === 'timetables') {
-                loadTimetables();
-            }
-        } else {
-            console.error(`Section with ID "${sectionId}-section" not found`); // Debug log
+        // Load section-specific content if needed
+        if (sectionId === 'sponsors') {
+            loadSponsors();
+        } else if (sectionId === 'staff') {
+            loadStaffMembers();
+        } else if (sectionId === 'timetables') {
+            loadTimetables();
+        } else if (sectionId === 'home') {
+            // Initialize slideshow when showing home section
+            setTimeout(initializeSlideshow, 100);
         }
-        
-        // Update active state in navbar
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-section') === sectionId) {
-                link.classList.add('active');
-            }
-        });
-        
-        // Reset program views if showing programs section
-        if (sectionId === 'programs') {
-            const allPrograms = document.getElementById('all-programs');
-            if (allPrograms) {
-                allPrograms.style.display = 'block';
-            }
-            document.querySelectorAll('.single-program-view').forEach(view => {
-                view.style.display = 'none';
-            });
-        }
+    } else {
+        console.error(`Section with ID "${sectionId}-section" not found`); // Debug log
     }
     
-    // Function to show specific program
-    function showProgram(programId) {
-        // Hide all program views
+    // Update active state in navbar
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === sectionId) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Reset program views if showing programs section
+    if (sectionId === 'programs') {
         const allPrograms = document.getElementById('all-programs');
         if (allPrograms) {
-            allPrograms.style.display = 'none';
+            allPrograms.style.display = 'block';
         }
         document.querySelectorAll('.single-program-view').forEach(view => {
             view.style.display = 'none';
         });
-        
-        // Show the selected program
-        const programView = document.getElementById(programId + '-program');
-        if (programView) {
-            programView.style.display = 'block';
-        }
-        
-        // Ensure the programs section is active
-        contentSections.forEach(section => {
-            section.classList.remove('active');
-            section.style.display = 'none';
-        });
-        
-        const programsSection = document.getElementById('programs-section');
-        if (programsSection) {
-            programsSection.style.display = 'block';
-            programsSection.classList.add('active');
-            
-            // Add diamonds to the programs section
-            addDiamonds(programsSection);
-        }
-        
-        // Update active navbar link
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-section') === 'programs') {
-                link.classList.add('active');
-            }
-        });
+    }
+}
+// Function to show specific program
+function showProgram(programId) {
+    // Hide all program views
+    const allPrograms = document.getElementById('all-programs');
+    if (allPrograms) {
+        allPrograms.style.display = 'none';
+    }
+    document.querySelectorAll('.single-program-view').forEach(view => {
+        view.style.display = 'none';
+    });
+    
+    // Show the selected program
+    const programView = document.getElementById(programId + '-program');
+    if (programView) {
+        programView.style.display = 'block';
     }
     
-    // Add click event to navbar links
+    // Ensure the programs section is active
+    contentSections.forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+    });
+    
+    const programsSection = document.getElementById('programs-section');
+    if (programsSection) {
+        programsSection.style.display = 'block';
+        programsSection.classList.add('active');
+        
+        // Add diamonds to the programs section
+        addDiamonds(programsSection);
+    }
+    
+    // Update active navbar link
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const section = this.getAttribute('data-section');
-            showSection(section);
-        });
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === 'programs') {
+            link.classList.add('active');
+        }
     });
-    
-    // Add click event to program links
-    programLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const program = this.getAttribute('data-program');
-            showProgram(program);
-        });
+}
+
+// Add click event to navbar links
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const section = this.getAttribute('data-section');
+        showSection(section);
     });
-    
+});
+
+// Add click event to program links
+programLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const program = this.getAttribute('data-program');
+        showProgram(program);
+    });
+});
+
+// Add click event to information sheet link specifically
+if (informationLink) {
+    informationLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showSection('information');
+    });
+}
     // SLIDESHOW FUNCTIONALITY
     // Variables for slideshow
     let currentSlide = 0;
@@ -687,7 +759,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // FIXED: Load content from Firestore BEFORE showing home section
-    Promise.all([
+   Promise.all([
+        new Promise(resolve => {
+            initializeSections(); // Initialize sections first
+            resolve();
+        }),
         new Promise(resolve => {
             loadTimetables();
             resolve();
@@ -719,6 +795,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (homeLink) {
             homeLink.classList.add('active');
         }
+        
+        // Initialize slideshow after home section is displayed
+        setTimeout(initializeSlideshow, 100);
     }).catch(error => {
         console.error("Error loading content:", error);
         // Show home section anyway even if there's an error

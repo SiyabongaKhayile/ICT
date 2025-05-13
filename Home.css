@@ -25,6 +25,91 @@ body {
     flex: 1;
 }
 
+.content-section {
+    width: 100%;
+}
+ .hero-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-text {
+            background-color: #e53935; /* Red background */
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .department-title {
+            color: #ffffff !important; /* White color with !important to override any other styles */
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap;
+            position: absolute;
+            animation: scrollText 15s linear infinite;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Adding shadow to improve visibility */
+        }
+        
+        .star {
+            position: absolute;
+            opacity: 0;
+            border-radius: 50%;
+            animation-name: starAnimation;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes starAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(0) translateX(0) scale(0.2);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-15px) translateX(15px) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-60px) translateX(60px) scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-75px) translateX(75px) scale(0.2);
+            }
+        }
+        
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+      
+
+.hero-image {
+    width: 100%;
+    height: auto; /* Changed from fixed height to auto */
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto; /* Changed from 100% to auto to maintain aspect ratio */
+    max-height: none; /* Ensure no maximum height restriction */
+    object-fit: contain; /* Changed from cover to contain to preserve entire image */
+}
+
 /* Header styles */
 h1 {
     color: #812B29;
@@ -1117,3 +1202,4 @@ main > .sponsors-container,
     margin-top: 60px; /* Space after the sponsors section before any content */
     padding-top: 20px; /* Additional padding for better separation */
 }
+

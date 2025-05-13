@@ -18,43 +18,50 @@
     <script src="Home.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Navbar moved to top -->
-        <div class="navbar">
-            <a href="#" data-section="home">Home</a>
-            <a href="#" data-section="postgraduate">Postgraduate Studies</a>
-            <a href="#" data-section="information">Information Sheet</a>
-            <a href="#" data-section="timetables">IT Timetables</a>
-            <a href="#" data-section="programs" class="active">Programs</a>
-            <div class="dropdown">
-                <button class="dropdown-btn"></button>
-                <div class="dropdown-content">
-                    <a href="#" data-program="diploma">Diploma in Information Technology</a>
-                    <a href="#" data-program="extended">Diploma in Information Technology: Extended Curriculum Programme</a>
-                    <a href="#" data-program="advanced">Advanced Diploma in Information and Communication Technology in Applications Development</a>
+
+
+  <div class="navbar">
+    <a href="#" data-section="home">Home</a>
+    <a href="#" data-section="postgraduate">Postgraduate Studies</a>
+    <a href="#" data-section="timetables">IT Timetables</a>
+    <a href="#" data-section="programs" class="active">Programs</a>
+    <div class="dropdown">
+        <button class="dropdown-btn"></button>
+        <div class="dropdown-content">
+             <a href="#" data-section="information">Information Sheet</a>
+            <a href="#" data-program="diploma">Diploma in Information Technology</a>
+            <a href="#" data-program="extended">Diploma in Information Technology: Extended Curriculum Programme</a>
+            <a href="#" data-program="advanced">Advanced Diploma in Information and Communication Technology in Applications Development</a>
+           
+        </div>
+    </div>
+    <a href="#" data-section="sponsors">Partnerships</a>
+    <a href="#" data-section="staff">Staff</a>
+    <!-- Mobile menu toggle -->
+    <div class="menu-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+</div>
+
+
+
+ <div class="container">
+        <div class="content-section" id="home-section">
+            <!-- Split hero section with red background top half and image bottom half -->
+            <div class="hero-section">
+                <div class="hero-text" id="starContainer">
+                    <h2 class="department-title" style="color: #ffffff !important;">Department of Information & Communication Technology</h2>
+                    <!-- Stars will be dynamically added here -->
+                </div>
+                <div class="hero-image">
+                    <img src="images/Siyo.jpeg" alt="ICT Department">
                 </div>
             </div>
-            <a href="#" data-section="sponsors">Partnerships</a>
-            <a href="#" data-section="staff">Staff</a>
-            <!-- Mobile menu toggle -->
-            <div class="menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-
-        <!-- Home section with red background top and image bottom -->         
-        <div class="content-section" id="home-section">             
-            <!-- Split hero section with red background top half and image bottom half -->             
-            <div class="hero-section">                 
-                <div class="hero-text">                     
-                    <h2 class="department-title">Department of Information & Communication Technology</h2>                 
-                </div>                 
-                <div class="hero-image">                     
-                    <img src="images/Siyo.jpeg" alt="ICT Department">                 
-                </div>             
-            </div>            
+        
+    
+    
             
             <!-- Quick Links Section -->
             <div class="quick-links">
@@ -101,6 +108,8 @@
                 <div class="dots-container"></div>
             </div>
         </div>
+
+
 
         <div class="content-section" id="information-section">
             <h1>Why Study ICT?</h1>
